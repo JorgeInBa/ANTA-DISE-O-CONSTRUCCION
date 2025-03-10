@@ -1,57 +1,45 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anta Diseño y Construcción</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
-        header { background: #333; color: white; padding: 15px; text-align: center; }
-        nav { display: flex; justify-content: center; background: #444; }
-        nav a { color: white; padding: 15px; text-decoration: none; }
-        nav a:hover { background: #666; }
-        section { padding: 20px; }
-        footer { background: #333; color: white; text-align: center; padding: 10px; position: absolute; width: 100%; bottom: 0; }
-    </style>
-</head>
-<body>
-    <header>
-        <h1>Anta Diseño y Construcción</h1>
-    </header>
-    <nav>
-        <a href="#inicio">Inicio</a>
-        <a href="#nosotros">Nosotros</a>
-        <a href="#servicios">Servicios</a>
-        <a href="#proyectos">Proyectos</a>
-        <a href="#contacto">Contacto</a>
-    </nav>
-    <section id="inicio">
-        <h2>Bienvenidos a Anta Diseño y Construcción</h2>
-        <p>Empresa dedicada a la construcción y diseño de proyectos innovadores y seguros.</p>
-    </section>
-    <section id="nosotros">
-        <h2>Sobre Nosotros</h2>
-        <p>Somos una empresa con experiencia en la industria de la construcción, brindando soluciones eficientes y de calidad.</p>
-    </section>
-    <section id="servicios">
-        <h2>Nuestros Servicios</h2>
-        <ul>
-            <li>Diseño arquitectónico y estructural</li>
-            <li>Construcción de obras civiles</li>
-            <li>Supervisión y gestión de proyectos</li>
-        </ul>
-    </section>
-    <section id="proyectos">
-        <h2>Proyectos Realizados</h2>
-        <p>Galería con nuestros trabajos destacados (se pueden incluir imágenes).</p>
-    </section>
-    <section id="contacto">
-        <h2>Contacto</h2>
-        <p>Correo: contacto@antadiseno.com</p>
-        <p>Teléfono: +593 999 999 999</p>
-    </section>
-    <footer>
-        <p>&copy; 2025 Anta Diseño y Construcción. Todos los derechos reservados.</p>
-    </footer>
-</body>
-</html>
+import React from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { FaHardHat, FaPencilRuler, FaWater, FaBuilding, FaCubes, FaHome } from "react-icons/fa";
+import Image from "next/image";
+
+const services = [
+  { icon: <FaBuilding size={40} />, title: "Diseño Arquitectónico", description: "Diseñamos espacios innovadores y funcionales." },
+  { icon: <FaPencilRuler size={40} />, title: "Diseño Estructural", description: "Cálculo y diseño estructural para edificaciones seguras." },
+  { icon: <FaWater size={40} />, title: "Agua Potable y Alcantarillado", description: "Infraestructura hidráulica eficiente y sostenible." },
+  { icon: <FaCubes size={40} />, title: "Modelado BIM", description: "Modelado digital para optimización de proyectos." },
+  { icon: <FaHome size={40} />, title: "Diseño de Interiores", description: "Espacios interiores personalizados y funcionales." },
+];
+
+export default function Home() {
+  return (
+    <div className="container mx-auto p-6">
+      <header className="text-center mb-10">
+        <h1 className="text-4xl font-bold">Anta Diseño y Construcción</h1>
+        <p className="text-lg text-gray-600">Innovación y calidad en arquitectura e ingeniería</p>
+      </header>
+      <section className="grid md:grid-cols-2 gap-6">
+        <Image src="/construction.jpg" alt="Construcción" width={600} height={400} className="rounded-lg" />
+        <div>
+          <h2 className="text-2xl font-semibold mb-4">Nuestra Empresa</h2>
+          <p>Somos expertos en diseño arquitectónico, estructural, modelado BIM y soluciones de infraestructura como agua potable y alcantarillado.</p>
+          <Button className="mt-4">Contáctanos</Button>
+        </div>
+      </section>
+      <section className="mt-10">
+        <h2 className="text-2xl font-semibold text-center mb-6">Nuestros Servicios</h2>
+        <div className="grid md:grid-cols-3 gap-6">
+          {services.map((service, index) => (
+            <Card key={index} className="p-6 text-center">
+              <div className="text-blue-500 mb-4">{service.icon}</div>
+              <h3 className="text-xl font-semibold">{service.title}</h3>
+              <p className="text-gray-600 mt-2">{service.description}</p>
+            </Card>
+          ))}
+        </div>
+      </section>
+    </div>
+  );
+}
+
